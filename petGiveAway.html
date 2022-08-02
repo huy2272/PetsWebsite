@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<!-- Meta data required for the browser -->
+<head>
+    <meta charset="utf-8">
+    <title>Basic Webpage</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="project.js">
+    </script>
+</head>
+
+<body onload="getCurrentDate();">
+  <div class="header">
+    <table>
+      <tr>
+        <td><h1>Pets Adoption Centre</h1></td>
+        <td><a href="homePage.html"><img src="Images/logoImage.jpg" alt="Image not found" width="100" height="75"></a></td>
+      </tr>
+    </table>
+    <div id="dateAndTime">
+    </div>
+  </div>
+
+  <div class="nav">
+    <ul>
+      <li><a class="active" href="homePage.html">Home page</a></li>
+      <li><a href="pets.html">Browse Available Pets</a></li>
+      <li><a href="findDogCat.html">Find a dog/cat</a></li>
+      <li><a href="dogCare.html">Dog care</a></li>
+      <li><a href="catCare.html">Cat care</a></li>
+      <li><a href="petGiveAway.html">Have a pet to give away</a></li>
+      <li><a href="contactUs.html">Contact Us</a></li>
+    </ul>
+  </div>
+
+  <div class="body">
+    <form name="UserDetailForm" action="#" onsubmit="validateFormGiveAway()" method="post">
+    <h2>Have a pet to give away</h2>
+    <!-- Dog or Cat -->
+    <label for="animalType">Is your animal a dog or a cat</label>
+    <select id="animalType">
+    <option value="LE">Cat</option>
+    <option value="OE">Dog</option>
+    </select><br/>
+    <!-- Breed of dog or cat -->
+    <label for="breed">Enter the breed of the dog or cat </label>
+    <input type="text" name="answer_a" id="breed"><br/>
+    <table>
+    <!-- dogType and catType have same name but different ID, so that only one breed can be selected at a time -->
+    <tr>
+      <td>
+        <label>Or pick the breed of your animal below</label>
+      </td>
+    </tr>
+    <tr>
+      <td><input type="radio" name="answer_f" id="bulldog">
+      <label for="bulldog">Bulldog</label>
+      <input type="radio" name="answer_f1" id="germanShep">
+      <label for="germanShep">German Shepherd</label>
+      <input type="radio" name="answer_f2" id="goldenRetriever">
+      <label for="goldenRetriever">Golden Retriever</label></td>
+    </tr>
+    <tr>
+      <td><input type="radio" name="answer_g" id="persian">
+      <label for="persian">Persian</label>
+      <input type="radio" name="answer_g1" id="maineCoon">
+      <label for="maineCoon">Maine Coon</label>
+      <input type="radio" name="answer_g2" id="siamese">
+      <label for="siamese">Siamese</label></td>
+    </tr>
+    <tr>
+      <td><input type="radio" name="answer_h" id="mixed">
+      <label for="mixed">Mixed Breed</label>
+      </td>
+    </tr>
+    </table>
+    <!-- Age of animal -->
+      <label for="age">Age of animal</label>
+      <select id="age">
+        <option value="LE">Less than 2</option>
+        <option value="OE">Over 2</option>
+        <option value="NA">I do not know</option>
+      </select><br/>
+      <label for="gender">Gender of your animal</label>
+      <select id="gender">
+        <option value="LE">Male</option>
+        <option value="OE">Female</option>
+      </select><br/>
+      <p>Which of these options does your animal get along with? (Can select more than one)</p>
+      <input type="radio" name="answer_x" id="behaviorDogs">
+      <label for="behaviorDogs">Get along with other dogs</label>
+      <input type="radio" name="answer_y" id="behaviorCats">
+      <label for="behaviorCats">Get along with other cats</label>
+      <input type="radio" name="answer_z" id="behaviorChildren">
+      <label for="behaviorChildren">Suitable for a family with small children</label><br/>
+      <br><label for="comment">Please give a description of the animal you are putting up for adoption</label><br/>
+      <textarea name="answer_b" id="comment" rows="4" cols="50"></textarea><br/>
+      <p>Please enter your information below:</p><br>
+      <label for="Name" >First Name</label>
+      <input name="answer_c" type="text" id="Name"><br>
+      <label for="famName">Family Name</label>
+      <input name="answer_d" type="text" id="famName"><br>
+      <label for="Email">Enter your e-mail</label>
+      <input name="answer_e" type="email" id="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"><br/>
+      <br/>
+
+      <input type = "submit" value="Submit Form">
+      <input type="reset" value="Reset Form">
+    </form>
+  </div>
+
+  <div class="footer">
+    <ul>
+      <li id="Privacy"><a href="privacy.html">Privacy/Disclaimer Statement</a> </li>
+      <li id="Browser">This website was done on Google Chrome</li>
+    </ul>
+  </div>
+  <script src="project.js">
+  </script>
+</body>
+</html>
