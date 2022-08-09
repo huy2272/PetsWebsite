@@ -1,3 +1,37 @@
+
+<?php
+include_once('header.php');
+include_once('footer.php');
+include_once('nav.php');
+session_start();
+
+
+// // Check if the user is logged in, if not then redirect him to login page
+// if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+//     header("signIn.php");
+//     exit;
+// }
+
+// Define variables and initialize with empty values
+$fileName = "petsInfo.txt";
+$username = $password = $confirm_password = "";
+$usernameErr = $passwordErr = $passConfirmErr = "";
+
+// Processing form data when form is submitted
+if(isset($_POST["submitButton"])){
+      $animalType = $_POST["animalType"];
+      $breed = $_POST["breed"];
+      $gender = $_POST["gender"];
+      $Name = $_POST["Name"];
+      $famName = $_POST["famName"];
+      $username = $_SESSION["username"];
+      $text = $username.":".$animalType.":".$breed.":".$gender.":".$Name.":".$famName. "\n";
+      $f = fopen($fileName, "w");
+      fwrite($f,$text);
+      fclose($f);
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <!-- Meta data required for the browser -->
@@ -10,31 +44,9 @@
 </head>
 
 <body onload="getCurrentDate();">
-  <div class="header">
-    <table>
-      <tr>
-        <td><h1>Pets Adoption Centre</h1></td>
-        <td><a href="homePage.html"><img src="Images/logoImage.jpg" alt="Image not found" width="100" height="75"></a></td>
-      </tr>
-    </table>
-    <div id="dateAndTime">
-    </div>
-  </div>
-
-  <div class="nav">
-    <ul>
-      <li><a class="active" href="homePage.html">Home page</a></li>
-      <li><a href="pets.html">Browse Available Pets</a></li>
-      <li><a href="findDogCat.html">Find a dog/cat</a></li>
-      <li><a href="dogCare.html">Dog care</a></li>
-      <li><a href="catCare.html">Cat care</a></li>
-      <li><a href="petGiveAway.html">Have a pet to give away</a></li>
-      <li><a href="contactUs.html">Contact Us</a></li>
-    </ul>
-  </div>
 
   <div class="body">
-    <form name="UserDetailForm" action="#" onsubmit="validateFormGiveAway()" method="post">
+    <form name="UserDetailForm" action="petGiveAway.php" onsubmit="validateFormGiveAway()" method="post">
     <h2>Have a pet to give away</h2>
     <!-- Dog or Cat -->
     <label for="animalType">Is your animal a dog or a cat</label>
@@ -104,16 +116,9 @@
       <input name="answer_e" type="email" id="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"><br/>
       <br/>
 
-      <input type = "submit" value="Submit Form">
+      <input type ="submit" name="submitButton" value="Submit Form">
       <input type="reset" value="Reset Form">
     </form>
-  </div>
-
-  <div class="footer">
-    <ul>
-      <li id="Privacy"><a href="privacy.html">Privacy/Disclaimer Statement</a> </li>
-      <li id="Browser">This website was done on Google Chrome</li>
-    </ul>
   </div>
   <script src="project.js">
   </script>

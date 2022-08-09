@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<?php
+include_once('header.php');
+include_once('footer.php');
+include_once('nav.php');
+?>
 <html lang="en" dir="ltr">
 <!-- Meta data required for the browser -->
 <head>
@@ -9,27 +14,7 @@
     </script>
 </head>
 <body onload="getCurrentDate();">
-<div class="header">
-  <table>
-    <tr>
-      <td><h1>Pets Adoption Centre</h1></td>
-      <td><a href="homePage.html"><img src="Images/logoImage.jpg" alt="Image not found" width="100" height="75"></a></td>
-    </tr>
-  </table>
-  <div id="dateAndTime">
-  </div>
-  </div>
-  <div class="nav">
-    <ul>
-      <li><a class="active" href="homePage.html">Home page</a></li>
-      <li><a href="pets.html">Browse Available Pets</a></li>
-      <li><a href="findDogCat.html">Find a dog/cat</a></li>
-      <li><a href="dogCare.html">Dog care</a></li>
-      <li><a href="catCare.html">Cat care</a></li>
-      <li><a href="petGiveAway.html">Have a pet to give away</a></li>
-      <li><a href="contactUs.html">Contact Us</a></li>
-    </ul>
-  </div>
+
   <div class="body">
     <h3>Pets Available For Adoption</h3>
       <fieldset>
@@ -124,12 +109,6 @@
       </fieldset>
       </select><br/>
     </div>
-  </div>
-  <div class="footer">
-    <ul>
-      <li id="Privacy"><a href="privacy.html">Privacy/Disclaimer Statement</a> </li>
-      <li id="Browser">This website was done on Google Chrome</li>
-    </ul>
   </div>
   <script src="project.js">
   </script>
