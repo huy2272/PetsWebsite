@@ -1,64 +1,30 @@
-<!DOCTYPE html>
 <?php
 include_once('header.php');
 include_once('footer.php');
 include_once('nav.php');
-// Initialize the session
+
+$user_input = $_POST["username"];
+$password_input = $_POST["password"];
+
+$file = fopen('login.txt', 'r');
+
+while(!feof($file)){
+$line = fgets($file);
+list($user, $password) = explode(':', $line);
+if(trim($user) == $user_input && trim($password) == $password_input){
+$success = "Signed in succesfully";
+//If login successfull, start session
 session_start();
-// Define variables and initialize with empty values
-$fileName = "login.txt";
-$username = $password = "";
-$usernameErr = $passwordErr = $login_err = "";
-
-//Check if the user is already logged in
-//If yes go to petGiveAway page
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("petGiveAway.php");
-    exit;
+}else {
+echo "Invalid Login Credentials";
 }
-
-// Processing form data when form is submitted
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-
-    // Check if username is empty
-    if(empty(trim($_POST["username"]))){
-        $usernameErr = "Please enter username.";
-    } else{
-        $username = trim($_POST["username"]);
-    }
-
-    // Check if password is empty
-    if(empty(trim($_POST["password"]))){
-        $passwordErr = "Please enter your password.";
-    } else{
-        $password = trim($_POST["password"]);
-    }
-
-    // Validate credentials
-    if(empty($usernameErr) && empty($passwordErr)){
-        // Prepare a select statement
-        $f = fopen($fileName, "r");
-        $content = fread($f,"r");
-        //Check if username exist
-        if (strpos($content,$username)) {
-
-        //If username exists, check password
-            if(strpos($content, $password)){
-                // Password is correct, so start a new session
-                session_start();
-
-                // Store data in session variables
-                $_SESSION["loggedin"] = true;
-                $_SESSION["id"] = $id;
-                $_SESSION["username"] = $username;
-
-                // Redirect user to welcome page
-                header("petGiveAway.php");
-            }else{$login_err = "Invalid password.";}
-        } else{$login_err = "Invalid username";}
-} else{echo "Oops! Something went wrong. Please try again later.";}
+break;
 }
+fclose($file);
 ?>
+
+<!DOCTYPE html>
+
 <html lang="en" dir="ltr">
 <!-- Meta data required for the browser -->
 <head>
@@ -70,7 +36,31 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </head>
 
 <body onload="getCurrentDate();">
+<?php
+// Define variables and initialize with empty values
+$username = $password = "";
+$usernameErr = $passwordErr = $login_err = "";
 
+
+// Processing form data when form is submitted
+if(isset($_POST["submitButton"])){
+
+// Check if username is empty
+if(empty(trim($_POST["username"]))){
+$usernameErr = "Please enter username.";
+} else{
+$username = trim($_POST["username"]);
+}
+
+// Check if password is empty
+if(empty(trim($_POST["password"]))){
+$passwordErr = "Please enter your password.";
+} else{
+$password = trim($_POST["password"]);
+}
+
+}
+?>
   <div class="body">
         <div class="logIn">
           <h2>Sign in</h2>
@@ -78,8 +68,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
             <?php
             if(!empty($login_err)){
-                echo '<div class="alert alert-danger">' . $login_err . '</div>';
+                echo '<div class="loginErr">' . $login_err . '</div>';
             }
+
             ?>
 
             <form action="signIn.php" method="post">
@@ -100,6 +91,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </form>
         </div>
   </div>
+
   <script src="project.js">
   </script>
 </body>

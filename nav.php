@@ -6,7 +6,6 @@
     <div class="nav">
       <ul>
         <li><a class="active" href="homePage.php">Home page</a></li>
-        <li><a href="pets.php">Browse Available Pets</a></li>
         <li><a href="findDogCat.php">Find a dog/cat</a></li>
         <li><a href="dogCare.php">Dog care</a></li>
         <li><a href="catCare.php">Cat care</a></li>

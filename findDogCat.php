@@ -1,9 +1,33 @@
-<!DOCTYPE html>
 <?php
+session_start();
 include_once('header.php');
 include_once('footer.php');
 include_once('nav.php');
+
+//Get all user inputs
+$user_input = $_SESSION['username'];
+$catOrDog_input = $_POST['answer_a'];
+$breed_input = $_POST['answer_b'];
+$age_input = $_POST['age'];
+$gender_input = $_POST['gender'];
+
+$file = fopen('petsInfo.txt', 'r');
+
+//Find matching pets
+while(!feof($file)){
+$line = fgets($file);
+list($user, $catOrDog, $breed, $age,$gender) = explode(':', $line);
+if(trim($user) == $user_input && trim($catOrDog) == $catOrDog_input && trim($breed) == $breed_input && trim($age) == $age_input && trim($gender) == $gender_input){
+$success = "Matching pet found";
+//If login successfull, redirect to pet giveaway page
+}else {
+echo "No pets found";
+}
+break;
+}
+fclose($file);
 ?>
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <!-- Meta data required for the browser -->
 <head>

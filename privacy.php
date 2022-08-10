@@ -1,9 +1,9 @@
-<!DOCTYPE html>
 <?php
 include_once('header.php');
 include_once('footer.php');
 include_once('nav.php');
 ?>
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <!-- Meta data required for the browser -->
   <head>
